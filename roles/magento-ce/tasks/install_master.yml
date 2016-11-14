@@ -1,0 +1,46 @@
+---
+- name: Download Magento
+  get_url:
+    url: '{{ magento_download_path }}{{ magento_file_name }}'
+    dest: '{{ magento_document_root }}'
+    owner: 'www-data'
+    group: 'www-data'
+    validate_certs: no
+
+- name: Download Sample Content
+  get_url:
+    url: '{{ magento_download_path }}{{ magento_sample_file_name }}'
+    dest: '{{ magento_document_root }}'
+    owner: 'www-data'
+    group: 'www-data'
+    validate_certs: no
+  when: magento_sample_content == 'True'
+
+- name: Unpack Magento
+  unarchive:
+    src: '{{ magento_document_root }}/{{ magento_file_name }}'
+    dest: '{{ magento_document_root }}'
+    copy: no
+    owner: 'www-data'
+    group: 'www-data'
+
+- name: Unpack Sample Content
+  unarchive:
+    src: '{{ magento_document_root }}/{{ magento_sample_file_name }}'
+    dest: '{{ magento_document_root }}'
+    copy: no
+    owner: 'www-data'
+    group: 'www-data'
+  when: magento_sample_content == 'True'
+
+- name: Download 'Magento Sample Version' file
+  get_url:
+    url: '{{ magento_download_path }}sample_content_version.txt'
+    dest: '{{ magento_document_root }}'
+
+- name: Get Sample Data Version
+  command:
+    'cat sample_content_version.txt'
+  args:
+    chdir: '{{ magento_document_root }}'
+  register: magento_sample_content_version
