@@ -46,7 +46,7 @@ ubuntu_php_pkgs:
   - php5-mysqlnd
 
 magento_vhost_domain: 'localtest'
-magento_document_root: '/var/www/vhosts/{{ magento_vhost_domain }}/'
+magento_document_root: '/var/www/html/'
 
 magento_download_path: 'http://172.20.9.32/magento-ce/'
 magento_file_name: 'magento-1.9.3.0.tar.gz'

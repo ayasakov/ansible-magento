@@ -20,23 +20,25 @@
   unarchive:
     src: '{{ magento_document_root }}/{{ magento_file_name }}'
     dest: '{{ magento_document_root }}'
-    copy: no
     owner: 'www-data'
     group: 'www-data'
+    copy: no
 
 - name: Unpack Sample Content
   unarchive:
     src: '{{ magento_document_root }}/{{ magento_sample_file_name }}'
     dest: '{{ magento_document_root }}'
-    copy: no
     owner: 'www-data'
     group: 'www-data'
+    copy: no
   when: magento_sample_content == 'True'
 
 - name: Download 'Magento Sample Version' file
   get_url:
     url: '{{ magento_download_path }}sample_content_version.txt'
     dest: '{{ magento_document_root }}'
+    owner: 'www-data'
+    group: 'www-data'
 
 - name: Get Sample Data Version
   command:
@@ -44,3 +46,13 @@
   args:
     chdir: '{{ magento_document_root }}'
   register: magento_sample_content_version
+
+- name: Copy Core Files
+  shell:
+    'cp -R {{ magento_document_root }}/magento/{{ item }} {{ magento_document_root }}/'
+  args:
+    chdir: '{{ magento_document_root }}'
+  with_items:
+    - '*'
+    - '.htaccess'
+
