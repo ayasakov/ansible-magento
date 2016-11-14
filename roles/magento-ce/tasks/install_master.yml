@@ -56,3 +56,12 @@
     - '*'
     - '.htaccess'
 
+- name: Change chown
+  shell:
+    'chown -R www-data:www-data {{ magento_document_root }}/{{ item }}'
+  args:
+    chdir: '{{ magento_document_root }}'
+  with_items:
+    - '*'
+    - '.htaccess'
+
