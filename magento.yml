@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  user: root
-  sudo: yes
-  roles:
-    - magento-ce

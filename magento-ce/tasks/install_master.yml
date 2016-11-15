@@ -47,6 +47,16 @@
     chdir: '{{ magento_document_root }}'
   register: magento_sample_content_version
 
+- name: Import Sample MySQL Data
+  mysql_db:
+    name: '{{ magento_db_name }}'
+    target: '{{ magento_document_root}}/magento-sample-data-{{ magento_sample_content_version.stdout }}/magento_sample_data_for_{{ magento_sample_content_version.stdout }}.sql'
+    state: import
+    login_host: '{{ mysql_host_ip }}'
+    login_user: '{{ magento_db_user }}'
+    login_password: '{{ magento_db_password }}'
+  when: magento_sample_content == 'True'
+
 - name: Copy Core Files
   shell:
     'cp -R {{ magento_document_root }}/magento/{{ item }} {{ magento_document_root }}/'
@@ -55,6 +65,16 @@
   with_items:
     - '*'
     - '.htaccess'
+
+- name: Copy Core Sample Files
+  copy:
+    src: '{{ magento_document_root }}/magento-sample-data-{{ magento_sample_content_version.stdout }}/{{ item }}'
+    dest: '{{ magento_document_root }}'
+    force: yes
+  with_items:
+    - 'media'
+    - 'skin'
+  when: magento_sample_content == 'True'
 
 - name: Change chown
   shell:
