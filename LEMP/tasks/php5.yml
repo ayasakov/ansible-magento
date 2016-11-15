@@ -6,6 +6,14 @@
     update_cache: yes
   with_items: "{{ ubuntu_php_pkgs }}"
 
+- name: Get mcrypt file
+  stat: path=/var/lib/php5/modules/registry/mcrypt
+  register: mcyrptFile
+
+- name: Enable PHP mcrypt extension
+  command: php5enmod mcrypt
+  when: not mcyrptFile.stat.exists
+
 - name: Copy the templates to their respestive destination
   template:
     src: "{{ item.src }}"
