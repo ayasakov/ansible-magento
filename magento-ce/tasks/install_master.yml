@@ -117,3 +117,5 @@
   command: 'php -f install.php -- --license_agreement_accepted "yes" --locale "en_US" --timezone "{{ tz }}" --default_currency "USD" --db_host {{ magento_mysql_host_ip }} --db_name {{ magento_mysql_database }} --db_user {{ magento_mysql_user }} --db_pass {{ magento_mysql_password }} --url http://{{ magento_vhost_domain }} --skip_url_validation --use_rewrites "yes" --use_secure "no" --secure_base_url https://{{ magento_vhost_domain }} --use_secure_admin "no" --admin_firstname {{ magento_admin_fname }} --admin_lastname {{ magento_admin_lname }} --admin_email {{ magento_admin_email }} --admin_username {{ magento_admin_user }} --admin_password {{ magento_admin_pass }}'
   args:
     chdir: "{{ magento_document_root }}"
+  notify:
+    - Restart Nginx
