@@ -30,6 +30,7 @@ ubuntu_mysql_pkgs:
   - libmysqlclient-dev
 
 ubuntu_php_pkgs:
+  - unzip
   - php5-fpm
   - php5-cgi
   - php5-cli

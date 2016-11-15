@@ -49,12 +49,12 @@
 
 - name: Import Sample MySQL Data
   mysql_db:
-    name: '{{ magento_db_name }}'
+    name: '{{ magento_mysql_database }}'
     target: '{{ magento_document_root}}/magento-sample-data-{{ magento_sample_content_version.stdout }}/magento_sample_data_for_{{ magento_sample_content_version.stdout }}.sql'
     state: import
-    login_host: '{{ mysql_host_ip }}'
-    login_user: '{{ magento_db_user }}'
-    login_password: '{{ magento_db_password }}'
+    login_host: '{{ magento_mysql_host_ip }}'
+    login_user: '{{ magento_mysql_user }}'
+    login_password: '{{ magento_mysql_password }}'
   when: magento_sample_content == 'True'
 
 - name: Copy Core Files

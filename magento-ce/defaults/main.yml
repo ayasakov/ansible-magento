@@ -1,5 +1,5 @@
 ---
-magento_reach_dropdown: ""
+magento_reach_dropdown: "Fresh install of the latest Magento CE 1.9.x release (including sample data)"
 
 magento_garbage_files:
 - magento
@@ -13,7 +13,7 @@ magento_garbage_files:
 - '{{ magento_file_name }}'
 - '{{ magento_sample_file_name }}'
 
-magento_document_root: '/var/www/html/'
+magento_document_root: '/var/www/html'
 
 magento_download_path: 'http://172.20.9.32/magento-ce/'
 magento_file_name: 'magento-1.9.3.0.tar.gz'
