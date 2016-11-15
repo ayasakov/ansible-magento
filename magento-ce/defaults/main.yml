@@ -1,4 +1,6 @@
 ---
+magento_reach_dropdown: ""
+
 magento_garbage_files:
 - magento
 - magento-sample-data-{{ magento_sample_content_version.stdout }}
@@ -17,10 +19,10 @@ magento_download_path: 'http://172.20.9.32/magento-ce/'
 magento_file_name: 'magento-1.9.3.0.tar.gz'
 magento_sample_file_name: 'magento-sample-data-1.9.2.4.tar.gz'
 
-mysql_default_user: example
-mysql_default_user_password: example
-mysql_default_database: example
-mysql_default_host_ip: localhost
+magento_mysql_user: example
+magento_mysql_password: example
+magento_mysql_database: example
+magento_mysql_host_ip: localhost
 
 tz: 'America/Chicago'
 magento_vhost_domain: 'localhost'
