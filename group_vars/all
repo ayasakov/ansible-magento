@@ -64,6 +64,7 @@ magento_download_path: 'http://172.20.9.32/magento-ce/'
 magento_file_name: 'magento-1.9.3.0.tar.gz'
 magento_sample_file_name: 'magento-sample-data-1.9.2.4.tar.gz'
 
+tz: 'America/Chicago'
 magento_vhost_domain: 'localhost'
 magento_admin_user: magento
 magento_admin_pass: P@$$w0rd1
