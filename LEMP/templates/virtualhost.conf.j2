@@ -1,5 +1,5 @@
 server {
-             listen *:81;
+             listen {{ server_name }}:81;
              server_name {{ server_name }};
                
              root /var/www/html;
